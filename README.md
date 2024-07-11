@@ -1,24 +1,43 @@
 # README
+Проект Тест Гуру
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Описание
+Основное предназначение проекта:
+- Создание тестов и управление ими
+- Выполнение тестов
+- Публикация результатов в соц. сети
 
-Things you may want to cover:
+Проект будет иметь:
+- Аутентификацию
+- Авторизацию(базовое разграничение прав доступа)
+- Две роли: участники тестов и администраторы
 
-* Ruby version
+## Локальный старт
 
-* System dependencies
+- Установленный: ruby-3.3.3
 
-* Configuration
+- Установленный: sqlite3
 
-* Database creation
+- Установленная: node-22.1.0
 
-* Database initialization
+- Установленный: yarn
 
-* How to run the test suite
+### Выполнить команды
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+git clone git@github.com:dionixs/test-guru.git
+bundle install
+rails db:create
+yarn install
+```
 
-* Deployment instructions
+Запустить приложение:
+```
+bin/dev
+```
 
-* ...
+## Cписок сущностей:
+* Тест
+* Вопрос
+* Ответ
+* Пользователь
