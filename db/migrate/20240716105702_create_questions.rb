@@ -5,6 +5,8 @@ class CreateQuestions < ActiveRecord::Migration[7.1]
     create_table :questions do |t|
       t.string :value, null: false
 
+      t.references :test, null: false, foreign_key: true
+
       t.timestamps
     end
   end
