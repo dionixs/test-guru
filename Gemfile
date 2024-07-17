@@ -66,3 +66,5 @@ group :development do
   gem "rubocop-rails", "~> 2.25"
   gem "rubocop-rails_config"
 end
+
+gem "faker", "~> 3.4"
