@@ -28,12 +28,8 @@ class Test < ApplicationRecord
   # названий всех Тестов у которых Категория называется определённым образом
   # (название категории передается в метод в качестве аргумента).
   def self.test_names_by_category(category_name)
-    Test.find_by_sql("
-            SELECT tests.title
-            FROM tests
-            INNER JOIN categories ON tests.category_id = categories.id
-            WHERE categories.title = '#{category_name}'
-            ORDER BY tests.created_at DESC")
-        .pluck(:title)
+    Test.joins('INNER JOIN categories ON tests.category_id = categories.id')
+        .where('categories.title = :title', title: category_name)
+        .order('tests.created_at DESC').pluck(:title)
   end
 end
