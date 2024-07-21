@@ -120,3 +120,10 @@ Answer.transaction do
     Answer.find_or_create_by!(answer)
   end
 end
+
+UserTest.transaction do
+  user = User.first.id
+
+  UserTest.find_or_create_by!(user_id: user, test_id: Test.last.id)
+  UserTest.find_or_create_by!(user_id: user, test_id: Test.first.id)
+end
