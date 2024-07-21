@@ -2,5 +2,8 @@ inherit_gem:
   rubocop-rails_config:
     - config/rails.yml
 
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
 AllCops:
   TargetRubyVersion: 3.3
