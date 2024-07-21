@@ -13,12 +13,12 @@
 
 Category.transaction do
   categories = [
-    { title: "Backend" },
-    { title: "Frontend" },
-    { title: "History" },
-    { title: "Philosophy" },
-    { title: "Linguistics" },
-    { title: "Music" }
+    { title: 'Backend' },
+    { title: 'Frontend' },
+    { title: 'History' },
+    { title: 'Philosophy' },
+    { title: 'Linguistics' },
+    { title: 'Music' }
   ]
 
   categories.each do |category|
@@ -36,13 +36,19 @@ User.transaction do
 end
 
 Test.transaction do
+  first_category = Category.first.id
+  second_category = Category.second.id
+
+  first_author = User.first.id
+  last_author = User.last.id
+
   tests = [
-    { title: "Ruby Beginner", level: 0, category_id: Category.first.id, author_id: User.first.id },
-    { title: "Ruby Advanced", level: 1, category_id: Category.first.id, author_id: User.first.id },
-    { title: "Haskell", level: 2, category_id: Category.first.id, author_id: User.first.id },
-    { title: "Java Script", level: 1, category_id: Category.second.id, author_id: User.last.id },
-    { title: "HTML", level: 1, category_id: Category.second.id, author_id: User.last.id },
-    { title: "CSS", level: 1, category_id: Category.second.id, author_id: User.last.id }
+    { title: 'Ruby Beginner', level: 0, category_id: first_category, author_id: first_author },
+    { title: 'Ruby Advanced', level: 1, category_id: first_category, author_id: first_author },
+    { title: 'Haskell', level: 2, category_id: first_category, author_id: first_author },
+    { title: 'Java Script', level: 1, category_id: second_category, author_id: last_author },
+    { title: 'HTML', level: 1, category_id: second_category, author_id: last_author },
+    { title: 'CSS', level: 1, category_id: second_category, author_id: last_author }
   ]
 
   tests.each do |test|
@@ -51,13 +57,16 @@ Test.transaction do
 end
 
 Question.transaction do
+  ruby_beginner = Test.find_by(title: 'Ruby Beginner').id
+  ruby_advanced = Test.find_by(title: 'Ruby Advanced').id
+
   questions = [
-    { value: "What is the output of 1 + 1 in Ruby?", test_id: Test.find_by(title: "Ruby Beginner").id },
-    { value: "How do you define a method in Ruby?", test_id: Test.find_by(title: "Ruby Beginner").id },
-    { value: "What is a block in Ruby?", test_id: Test.find_by(title: "Ruby Beginner").id },
-    { value: "How do you create a class in Ruby?", test_id: Test.find_by(title: "Ruby Advanced").id },
-    { value: "What is a module in Ruby?", test_id: Test.find_by(title: "Ruby Advanced").id },
-    { value: "Explain the difference between a proc and a lambda in Ruby.", test_id: Test.find_by(title: "Ruby Advanced").id }
+    { value: 'What is the output of 1 + 1 in Ruby?', test_id: ruby_beginner  },
+    { value: 'How do you define a method in Ruby?', test_id: ruby_beginner },
+    { value: 'What is a block in Ruby?', test_id: ruby_beginner },
+    { value: 'How do you create a class in Ruby?', test_id: ruby_advanced },
+    { value: 'What is a module in Ruby?', test_id: ruby_advanced },
+    { value: 'Explain the difference between a proc and a lambda in Ruby.', test_id: ruby_advanced }
   ]
 
   questions.each do |question|
@@ -66,38 +75,45 @@ Question.transaction do
 end
 
 Answer.transaction do
+  question_1 = Question.find_by(value: 'What is the output of 1 + 1 in Ruby?').id
+  question_2 = Question.find_by(value: 'How do you define a method in Ruby?').id
+  question_3 = Question.find_by(value: 'What is a block in Ruby?').id
+  question_4 = Question.find_by(value: 'How do you create a class in Ruby?').id
+  question_5 = Question.find_by(value: 'What is a module in Ruby?').id
+  question_6 = Question.find_by(value: 'Explain the difference between a proc and a lambda in Ruby.').id
+
   answers = [
     # Ruby Beginner
-    { value: "2", correct: true, question_id: Question.find_by(value: "What is the output of 1 + 1 in Ruby?").id },
-    { value: "3", correct: false, question_id: Question.find_by(value: "What is the output of 1 + 1 in Ruby?").id },
-    { value: "11", correct: false, question_id: Question.find_by(value: "What is the output of 1 + 1 in Ruby?").id },
-    { value: "1", correct: false, question_id: Question.find_by(value: "What is the output of 1 + 1 in Ruby?").id },
+    { value: '2', correct: true, question_id: question_1 },
+    { value: '3', correct: false, question_id: question_1 },
+    { value: '11', correct: false, question_id: question_1 },
+    { value: '1', correct: false, question_id: question_1 },
 
-    { value: "def method_name; end", correct: true, question_id: Question.find_by(value: "How do you define a method in Ruby?").id },
-    { value: "function method_name; end", correct: false, question_id: Question.find_by(value: "How do you define a method in Ruby?").id },
-    { value: "method_name() { }", correct: false, question_id: Question.find_by(value: "How do you define a method in Ruby?").id },
-    { value: "function method_name() { }", correct: false, question_id: Question.find_by(value: "How do you define a method in Ruby?").id },
+    { value: 'def method_name; end', correct: true, question_id: question_2 },
+    { value: 'function method_name; end', correct: false, question_id: question_2 },
+    { value: 'method_name() { }', correct: false, question_id: question_2 },
+    { value: 'function method_name() { }', correct: false, question_id: question_2 },
 
-    { value: "A block is a chunk of code enclosed between do and end or {}.", correct: true, question_id: Question.find_by(value: "What is a block in Ruby?").id },
-    { value: "A block is an object in Ruby.", correct: false, question_id: Question.find_by(value: "What is a block in Ruby?").id },
-    { value: "A block is a method in Ruby.", correct: false, question_id: Question.find_by(value: "What is a block in Ruby?").id },
-    { value: "A block is a class in Ruby.", correct: false, question_id: Question.find_by(value: "What is a block in Ruby?").id },
+    { value: 'A block is a chunk of code enclosed between do and end or {}.', correct: true, question_id: question_3 },
+    { value: 'A block is an object in Ruby.', correct: false, question_id: question_3 },
+    { value: 'A block is a method in Ruby.', correct: false, question_id: question_3 },
+    { value: 'A block is a class in Ruby.', correct: false, question_id: question_3 },
 
     # Ruby Advanced
-    { value: "class ClassName; end", correct: true, question_id: Question.find_by(value: "How do you create a class in Ruby?").id },
-    { value: "def ClassName; end", correct: false, question_id: Question.find_by(value: "How do you create a class in Ruby?").id },
-    { value: "create_class ClassName", correct: false, question_id: Question.find_by(value: "How do you create a class in Ruby?").id },
-    { value: "class ClassName() { }", correct: false, question_id: Question.find_by(value: "How do you create a class in Ruby?").id },
+    { value: 'class ClassName; end', correct: true, question_id: question_4 },
+    { value: 'def ClassName; end', correct: false, question_id: question_4 },
+    { value: 'create_class ClassName', correct: false, question_id: question_4 },
+    { value: 'class ClassName() { }', correct: false, question_id: question_4 },
 
-    { value: "A module is a collection of methods and constants.", correct: true, question_id: Question.find_by(value: "What is a module in Ruby?").id },
-    { value: "A module is a class in Ruby.", correct: false, question_id: Question.find_by(value: "What is a module in Ruby?").id },
-    { value: "A module is an object in Ruby.", correct: false, question_id: Question.find_by(value: "What is a module in Ruby?").id },
-    { value: "A module is a block in Ruby.", correct: false, question_id: Question.find_by(value: "What is a module in Ruby?").id },
+    { value: 'A module is a collection of methods and constants.', correct: true, question_id: question_5 },
+    { value: 'A module is a class in Ruby.', correct: false, question_id: question_5 },
+    { value: 'A module is an object in Ruby.', correct: false, question_id: question_5 },
+    { value: 'A module is a block in Ruby.', correct: false, question_id: question_5 },
 
-    { value: "Procs are objects, lambdas are not.", correct: false, question_id: Question.find_by(value: "Explain the difference between a proc and a lambda in Ruby.").id },
-    { value: "Lambdas check the number of arguments, procs do not.", correct: true, question_id: Question.find_by(value: "Explain the difference between a proc and a lambda in Ruby.").id },
-    { value: "Procs are anonymous functions, lambdas are not.", correct: false, question_id: Question.find_by(value: "Explain the difference between a proc and a lambda in Ruby.").id },
-    { value: "Lambdas cannot return values, procs can.", correct: false, question_id: Question.find_by(value: "Explain the difference between a proc and a lambda in Ruby.").id }
+    { value: 'Procs are objects, lambdas are not.', correct: false, question_id: question_6 },
+    { value: 'Lambdas check the number of arguments, procs do not.', correct: true, question_id: question_6 },
+    { value: 'Procs are anonymous functions, lambdas are not.', correct: false, question_id: question_6 },
+    { value: 'Lambdas cannot return values, procs can.', correct: false, question_id: question_6 }
   ]
 
   answers.each do |answer|
