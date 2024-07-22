@@ -27,9 +27,10 @@ class Test < ApplicationRecord
   # метод который возвращает отсортированный по убыванию массив
   # названий всех Тестов у которых Категория называется определённым образом
   # (название категории передается в метод в качестве аргумента).
-  def self.test_names_by_category(category_name)
-    Test.joins('INNER JOIN categories ON tests.category_id = categories.id')
-        .where('categories.title = :title', title: category_name)
-        .order('tests.created_at DESC').pluck(:title)
+  def self.test_names_by_category(title)
+    joins('INNER JOIN categories ON tests.category_id = categories.id')
+      .where(categories: { title: })
+      .order('tests.created_at DESC')
+      .pluck(:title)
   end
 end
