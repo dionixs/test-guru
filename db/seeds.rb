@@ -36,8 +36,8 @@ User.transaction do
 end
 
 Test.transaction do
-  first_category = Category.first.id
-  second_category = Category.second.id
+  first_category = Category.find_by_title('Backend').id
+  second_category = Category.find_by_title('Frontend').id
 
   first_author = User.first.id
   last_author = User.last.id
@@ -123,7 +123,9 @@ end
 
 UserTest.transaction do
   user = User.first.id
+  test_1 = Test.find_by_title('Ruby Beginner').id
+  test_2 = Test.find_by_title('CSS').id
 
-  UserTest.find_or_create_by!(user_id: user, test_id: Test.last.id)
-  UserTest.find_or_create_by!(user_id: user, test_id: Test.first.id)
+  UserTest.find_or_create_by!(user_id: user, test_id: test_2)
+  UserTest.find_or_create_by!(user_id: user, test_id: test_1)
 end
