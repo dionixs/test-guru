@@ -17,6 +17,6 @@ class User < ApplicationRecord
   # или когда-либо проходил Пользователь на этом уровне сложности
   def tests_by_level(level)
     Test.joins('INNER JOIN user_tests ON user_tests.test_id = tests.id')
-        .where('level = :level AND user_tests.user_id = :id', level:, id:)
+        .where(level:, user_tests: { user_id: id })
   end
 end
