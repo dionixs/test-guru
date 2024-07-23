@@ -30,7 +30,7 @@ class Test < ApplicationRecord
   def self.test_names_by_category(title)
     joins('INNER JOIN categories ON tests.category_id = categories.id')
       .where(categories: { title: })
-      .order('tests.created_at DESC')
+      .order(created_at: :desc)
       .pluck(:title)
   end
 end
