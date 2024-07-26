@@ -19,4 +19,6 @@
 #  test_id  (test_id => tests.id)
 #
 class Question < ApplicationRecord
+  has_many :answers
+  belongs_to :test
 end

@@ -11,6 +11,9 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
+  has_many :created_tests, class_name: 'Test', foreign_key: 'author_id'
+  has_many :user_tests
+  has_many :tests, through: :user_tests
 
   # метод принимает в качестве аргумента значение уровня сложности
   # и возвращает список всех Тестов, которые проходит
