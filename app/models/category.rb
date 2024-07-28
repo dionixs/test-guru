@@ -4,11 +4,11 @@
 #
 # Table name: categories
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-  belongs_to :test
+  has_many :tests, dependent: :delete_all
 end
