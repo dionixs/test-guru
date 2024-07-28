@@ -4,12 +4,12 @@
 #
 # Table name: answers
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
 #  correct     :boolean          default(FALSE), not null
 #  value       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  question_id :integer          not null
+#  question_id :bigint           not null
 #
 # Indexes
 #
@@ -17,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  question_id  (question_id => questions.id)
+#  fk_rails_...  (question_id => questions.id) ON DELETE => cascade
 #
 class Answer < ApplicationRecord
   belongs_to :question

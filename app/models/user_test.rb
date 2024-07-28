@@ -4,12 +4,12 @@
 #
 # Table name: user_tests
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  progress   :integer          default(0)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  test_id    :integer          not null
-#  user_id    :integer          not null
+#  test_id    :bigint           not null
+#  user_id    :bigint           not null
 #
 # Indexes
 #
@@ -19,8 +19,8 @@
 #
 # Foreign Keys
 #
-#  test_id  (test_id => tests.id)
-#  user_id  (user_id => users.id)
+#  fk_rails_...  (test_id => tests.id) ON DELETE => cascade
+#  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class UserTest < ApplicationRecord
   belongs_to :user

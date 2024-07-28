@@ -4,11 +4,11 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  value      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  test_id    :integer          not null
+#  test_id    :bigint           not null
 #
 # Indexes
 #
@@ -16,9 +16,10 @@
 #
 # Foreign Keys
 #
-#  test_id  (test_id => tests.id)
+#  fk_rails_...  (test_id => tests.id) ON DELETE => cascade
 #
 class Question < ApplicationRecord
-  has_many :answers
   belongs_to :test
+
+  has_many :answers, dependent: :delete_all
 end
