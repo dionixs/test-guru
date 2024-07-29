@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_19_193428) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_26_171610) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: :cascade do |t|
     t.string "value", null: false
     t.boolean "correct", default: false, null: false
-    t.integer "question_id", null: false
+    t.bigint "question_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
@@ -28,7 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_193428) do
 
   create_table "questions", force: :cascade do |t|
     t.string "value", null: false
-    t.integer "test_id", null: false
+    t.bigint "test_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["test_id"], name: "index_questions_on_test_id"
@@ -37,8 +40,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_193428) do
   create_table "tests", force: :cascade do |t|
     t.string "title", null: false
     t.integer "level", default: 0, null: false
-    t.integer "category_id", null: false
-    t.integer "author_id", null: false
+    t.bigint "category_id", null: false
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_tests_on_author_id"
@@ -46,11 +49,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_193428) do
   end
 
   create_table "user_tests", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "test_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "test_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "progress", default: 0
     t.index ["test_id"], name: "index_user_tests_on_test_id"
+    t.index ["user_id", "test_id"], name: "index_user_tests_on_user_id_and_test_id", unique: true
     t.index ["user_id"], name: "index_user_tests_on_user_id"
   end
 
