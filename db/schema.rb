@@ -66,10 +66,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_26_171610) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "answers", "questions", on_delete: :cascade
-  add_foreign_key "questions", "tests", on_delete: :cascade
-  add_foreign_key "tests", "categories", on_delete: :cascade
-  add_foreign_key "tests", "users", column: "author_id", on_delete: :cascade
-  add_foreign_key "user_tests", "tests", on_delete: :cascade
-  add_foreign_key "user_tests", "users", on_delete: :cascade
+  add_foreign_key "answers", "questions"
+  add_foreign_key "questions", "tests"
+  add_foreign_key "tests", "categories"
+  add_foreign_key "tests", "users", column: "author_id"
+  add_foreign_key "user_tests", "tests"
+  add_foreign_key "user_tests", "users"
 end

@@ -6,7 +6,7 @@ class CreateAnswers < ActiveRecord::Migration[7.1]
       t.string :value, null: false
       t.boolean :correct, null: false, default: false
 
-      t.references :question, null: false, foreign_key: { on_delete: :cascade }
+      t.references :question, null: false, foreign_key: true
 
       t.timestamps
     end
