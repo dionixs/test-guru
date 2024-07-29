@@ -20,7 +20,6 @@ class User < ApplicationRecord
   # и возвращает список всех Тестов, которые проходит
   # или когда-либо проходил Пользователь на этом уровне сложности
   def tests_by_level(level)
-    Test.joins(:user_tests)
-        .where(level:, user_tests: { user_id: id })
+    tests.where(level:)
   end
 end
