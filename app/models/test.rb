@@ -19,8 +19,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (author_id => users.id) ON DELETE => cascade
-#  fk_rails_...  (category_id => categories.id) ON DELETE => cascade
+#  fk_rails_...  (author_id => users.id)
+#  fk_rails_...  (category_id => categories.id)
 #
 class Test < ApplicationRecord
   belongs_to :author, class_name: 'User'
@@ -28,7 +28,7 @@ class Test < ApplicationRecord
 
   has_many :questions, dependent: :delete_all
   has_many :user_tests, dependent: :delete_all
-  has_many :users, through: :user_tests, dependent: :delete_all
+  has_many :users, through: :user_tests
 
   # метод который возвращает отсортированный по убыванию массив
   # названий всех Тестов у которых Категория называется определённым образом

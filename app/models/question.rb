@@ -16,7 +16,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (test_id => tests.id) ON DELETE => cascade
+#  fk_rails_...  (test_id => tests.id)
 #
 class Question < ApplicationRecord
   belongs_to :test
