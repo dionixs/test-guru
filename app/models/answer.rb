@@ -24,5 +24,18 @@ class Answer < ApplicationRecord
 
   validates :value, presence: true
 
+  validate :count_of_answers, on: :create
+
   scope :correct, -> { where(correct: true) }
+
+  scope :by_question_id, ->(question_id) { where(question_id:) }
+
+  private
+    def count_of_answers
+      count = self.class.by_question_id(question_id).count
+
+      return if count.zero?
+
+      errors.add(:base, 'must be between 1 and 4 answers') unless count >= 1 && count <= 4
+    end
 end
