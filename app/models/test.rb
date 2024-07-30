@@ -36,19 +36,14 @@ class Test < ApplicationRecord
   scope :medium, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..Float::INFINITY) }
 
+  scope :test_names_by_category, -> (title) { joins(:category)
+                                                .where(categories: { title: })
+                                                .order(title: :desc)
+                                                .pluck(:title) }
+
   validates :title, presence: true,
                     uniqueness: true
 
   validates :level, numericality: { only_integer: true },
                     inclusion: { in: 0.. }
-
-  # метод который возвращает отсортированный по убыванию массив
-  # названий всех Тестов у которых Категория называется определённым образом
-  # (название категории передается в метод в качестве аргумента).
-  def self.test_names_by_category(title)
-    joins(:category)
-      .where(categories: { title: })
-      .order(title: :desc)
-      .pluck(:title)
-  end
 end
