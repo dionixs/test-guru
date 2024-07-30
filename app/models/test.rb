@@ -14,8 +14,9 @@
 #
 # Indexes
 #
-#  index_tests_on_author_id    (author_id)
-#  index_tests_on_category_id  (category_id)
+#  index_tests_on_author_id        (author_id)
+#  index_tests_on_category_id      (category_id)
+#  index_tests_on_title_and_level  (title,level) UNIQUE
 #
 # Foreign Keys
 #
@@ -42,7 +43,7 @@ class Test < ApplicationRecord
                                                 .pluck(:title) }
 
   validates :title, presence: true,
-                    uniqueness: true
+                    uniqueness: { scope: :level }
 
   validates :level, numericality: { only_integer: true },
                     inclusion: { in: 0.. }
