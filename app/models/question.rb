@@ -27,8 +27,10 @@ class Question < ApplicationRecord
 
   validate :count_of_answers
 
+  private
+
   def count_of_answers
-    return if answers.size.between?(1, 4)
+    return if answers.size.between?(1, 4) || answers.size.zero?
 
     errors.add(:base, 'must be between 1 and 4 answers')
   end
