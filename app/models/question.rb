@@ -24,14 +24,4 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :delete_all
 
   validates :value, presence: true
-
-  validate :count_of_answers
-
-  private
-
-  def count_of_answers
-    return if answers.size.between?(1, 4) || answers.size.zero?
-
-    errors.add(:base, 'must be between 1 and 4 answers')
-  end
 end
