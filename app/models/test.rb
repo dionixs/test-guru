@@ -31,8 +31,6 @@ class Test < ApplicationRecord
   has_many :user_tests, dependent: :delete_all
   has_many :users, through: :user_tests
 
-  default_scope { order(created_at: :desc) }
-
   scope :easy, -> { where(level: 0..1) }
   scope :medium, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..Float::INFINITY) }
