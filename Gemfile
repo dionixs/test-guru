@@ -68,5 +68,5 @@ group :development do
   gem "rubocop-performance", "~> 1.21"
   gem 'faker', '~> 3.4'
   gem 'annotate'
-  gem 'rails-erd'
+  gem 'rails-mermaid_erd'
 end
