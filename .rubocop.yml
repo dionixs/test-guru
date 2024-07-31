@@ -1,9 +1,21 @@
-inherit_gem:
-  rubocop-rails_config:
-    - config/rails.yml
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-i18n
 
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
+inherit_from: .rubocop_todo.yml
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 3.3
+
+I18n/RailsI18n:
+  Enabled: true
+I18n/GetText:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Rails/FilePath:
+  EnforcedStyle: arguments

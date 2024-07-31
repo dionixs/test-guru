@@ -64,7 +64,8 @@ group :development do
 
   gem 'rubocop', '~> 1.65'
   gem 'rubocop-rails', '~> 2.25'
-  gem 'rubocop-rails_config'
+  gem "rubocop-i18n", "~> 3.0"
+  gem "rubocop-performance", "~> 1.21"
   gem 'faker', '~> 3.4'
   gem 'annotate'
   gem 'rails-erd'
