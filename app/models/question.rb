@@ -25,5 +25,5 @@ class Question < ApplicationRecord
 
   validates :value, presence: true
 
-  validates :answers, length: { minimum: 1, maximum: 4 }
+  validates :answers, length: { minimum: 0, maximum: 4 }
 end
