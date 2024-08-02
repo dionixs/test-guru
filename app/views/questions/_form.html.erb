@@ -1,0 +1,6 @@
+<%= form_with model: [test, question] do |f| %>
+
+  <%= f.text_field :value, placeholder: 'Введите вопрос' %>
+
+  <%= f.submit %>
+<% end %>

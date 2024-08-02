@@ -1,0 +1,15 @@
+<h2>Вопросы для теста <%= @test.title %>:</h2>
+
+<ul>
+  <% @questions.each do |question| %>
+
+    <li>
+      <%= link_to question.value, test_question_path(@test, question) %>
+      <br>
+      <%= link_to 'Удалить вопрос', test_question_path(@test, question),
+                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Создать новый вопрос', new_test_question_path(@test) %>
