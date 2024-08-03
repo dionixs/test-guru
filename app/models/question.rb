@@ -24,6 +24,4 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :delete_all
 
   validates :value, presence: true
-
-  validates :answers, length: { minimum: 0, maximum: 4 }
 end
