@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:value, :category_id)
+    params.require(:question).permit(:value)
   end
 
   def find_test
