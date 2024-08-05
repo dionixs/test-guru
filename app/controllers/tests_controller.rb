@@ -25,9 +25,9 @@ class TestsController < ApplicationController
 
   def update
     if @test.update(test_params)
-      redirect_to @test
+      redirect_to @test, status: :see_other
     else
-      render :edit
+      render :edit, status: :unprocessable_content
     end
   end
 
