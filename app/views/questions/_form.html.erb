@@ -1,6 +1,12 @@
-<%= form_with model: [test, question] do |f| %>
+<%= form_with model: do |f| %>
+  <%= render 'shared/errors', resource: %>
 
-  <%= f.text_field :value, placeholder: 'Введите вопрос' %>
+  <p>
+    <%= f.label :value %> <br>
+    <%= f.text_field :value, id: :question_value, placeholder: 'Введите вопрос' %>
+  </p>
 
-  <%= f.submit %>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>

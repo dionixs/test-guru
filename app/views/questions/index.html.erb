@@ -1,15 +1,17 @@
 <h2>Вопросы для теста <%= @test.title %>:</h2>
 
-<ul>
-  <% @questions.each do |question| %>
+<% if @questions.present? %>
+  <table>
+    <tr>
+      <th>Question</th>
+      <th>Test</th>
+      <th colspan="3">Actions</th>
+    </tr>
+    <%= render @questions %>
+  </table>
+<% else %>
+  <p>Ничего не найдено</p>
+<% end %>
 
-    <li>
-      <%= link_to question.value, question_path(question) %>
-      <br>
-      <%= link_to 'Удалить вопрос', question_path(question),
-                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to 'Создать новый вопрос', new_test_question_path(@test) %>
+<%= link_to 'New question', new_test_question_path(@test) %> |
+<%= link_to 'Back', tests_path %>
