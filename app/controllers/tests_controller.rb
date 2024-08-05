@@ -5,7 +5,9 @@ class TestsController < ApplicationController
     @tests = Test.all
   end
 
-  def show; end
+  def show
+    redirect_to test_questions_path(@test), status: :see_other
+  end
 
   def new
     @test = Test.new

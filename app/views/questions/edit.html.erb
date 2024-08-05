@@ -1,0 +1,6 @@
+<h2>Редактирование вопроса для теста <%= @test.title %>:</h2>
+
+<%= render partial: 'form', locals: { test: @test, question: @question,
+                                      model: [@question], resource: @question } %>
+
+<%= link_to 'Back', test_questions_path(@test) %>
