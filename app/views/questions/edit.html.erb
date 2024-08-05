@@ -1,4 +1,4 @@
-<h2>Редактирование вопроса для теста <%= @test.title %>:</h2>
+<h2><%= question_header(@test) %>:</h2>
 
 <%= render partial: 'form', locals: { test: @test, question: @question,
                                       model: [@question], resource: @question } %>
