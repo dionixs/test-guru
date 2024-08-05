@@ -1,0 +1,11 @@
+<tr>
+  <td><%= link_to test.title, test_questions_path(test) %></td>
+  <td><%= test_level(test) %></td>
+  <td><%= test.category.title %></td>
+  <td><%= link_to 'Edit', edit_test_path(test) %></td>
+  <td>
+    <%= link_to 'Delete',
+                test_path(test),
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+  </td>
+</tr>
