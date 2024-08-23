@@ -3,4 +3,4 @@
 <%= render partial: 'form', locals: { test: @test, question: @question,
                                       model: [@test, @question], resource: @question } %>
 
-<%= link_to 'Back', test_questions_path(@test) %>
+<%= link_to 'Back', test_path(@test) %>
