@@ -6,7 +6,7 @@ class TestsController < ApplicationController
   end
 
   def show
-    redirect_to test_questions_path(@test), status: :see_other
+    @questions = @test.questions
   end
 
   def new
@@ -19,9 +19,9 @@ class TestsController < ApplicationController
     @test = Test.new(test_params)
 
     if @test.save
-      redirect_to @test
+      redirect_to @test, status: :see_other
     else
-      render :new
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -41,7 +41,7 @@ class TestsController < ApplicationController
   private
 
   def test_params
-    params.require(:test).permit(:title, :level, :category_id)
+    params.require(:test).permit(:author_id, :title, :level, :category_id)
   end
 
   def find_test
