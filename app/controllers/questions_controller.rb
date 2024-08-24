@@ -10,9 +10,7 @@ class QuestionsController < ApplicationController
     @question = @test.questions.build
   end
 
-  def edit
-    @test = @question.test
-  end
+  def edit; end
 
   def create
     @question = @test.questions.build(question_params)
