@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     @question = @test.questions.build(question_params)
 
     if @question.save
-      redirect_to test_path(@test), status: :see_other
+      redirect_to question_path(@question), status: :see_other
     else
       render :new, status: :unprocessable_content
     end
