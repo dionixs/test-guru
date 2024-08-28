@@ -21,7 +21,5 @@ class User < ApplicationRecord
   # метод принимает в качестве аргумента значение уровня сложности
   # и возвращает список всех Тестов, которые проходит
   # или когда-либо проходил Пользователь на этом уровне сложности
-  def tests_by_level(level)
-    tests.by_level(level)
-  end
+  delegate :by_level, to: :tests, prefix: true
 end

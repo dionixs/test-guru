@@ -1,6 +1,6 @@
 <h2><%= question_header(@question) %>:</h2>
 
 <%= render partial: 'form', locals: { test: @test, question: @question,
-                                      model: [@test, @question], resource: @question } %>
+                                      model: [@question], resource: @question } %>
 
 <%= link_to 'Back', test_path(@test) %>
