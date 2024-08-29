@@ -4,12 +4,13 @@
 #
 # Table name: user_tests
 #
-#  id         :bigint           not null, primary key
-#  progress   :integer          default(0)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  test_id    :bigint           not null
-#  user_id    :bigint           not null
+#  id                :bigint           not null, primary key
+#  correct_questions :integer          default(0), not null
+#  progress          :integer          default(0)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  test_id           :bigint           not null
+#  user_id           :bigint           not null
 #
 # Indexes
 #
