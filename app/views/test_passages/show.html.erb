@@ -1,4 +1,4 @@
-<h1>Passing the <%= @test_passage.test.title %>Test</h1>
+<h1><%= @test_passage.current_question.id %>/<%= questions_count(@test_passage.test) %> Passing the <%= @test_passage.test.title %>Test</h1>
 
 <b>
   <%= @test_passage.current_question.value %>
