@@ -28,8 +28,8 @@ class Test < ApplicationRecord
   belongs_to :category
 
   has_many :questions, dependent: :delete_all
-  has_many :user_tests, dependent: :delete_all
-  has_many :users, through: :user_tests
+  has_many :test_passages, dependent: :delete_all
+  has_many :users, through: :test_passages
 
   validates :title, presence: true,
             uniqueness: { scope: :level }

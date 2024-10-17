@@ -31,6 +31,8 @@ class Answer < ApplicationRecord
   private
 
   def count_of_answers
+    return unless question&.answers
+
     errors.add(:base, 'must be between 1 and 4 answers') if question.answers.count >= 4
   end
 end
