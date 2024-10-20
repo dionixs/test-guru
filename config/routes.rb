@@ -4,15 +4,11 @@ Rails.application.routes.draw do
       resources :answers, shallow: true, except: :index
     end
 
-    member do
-      post :start
-    end
+    post :start, on: :member
   end
 
   resources :test_passages, only: %i[show update] do
-    member do
-      get :result
-    end
+    get :result, on: :member
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
