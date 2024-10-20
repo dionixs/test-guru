@@ -26,8 +26,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class TestPassage < ApplicationRecord
-  include CurrentQuestionConcern
-
   belongs_to :user
   belongs_to :test
 
@@ -49,8 +47,34 @@ class TestPassage < ApplicationRecord
   end
 
   def success?
-    return true if percentage >= 0.85
+    percentage >= 0.85
+  end
 
-    false
+  private
+
+  def set_current_question
+    self.current_question = next_question
+  end
+
+  def correct_answer?(answer_ids)
+    return false unless answer_ids
+
+    correct_answers.ids.sort == answer_ids.map(&:to_i).sort
+  end
+
+  def correct_answers
+    current_question.answers.correct
+  end
+
+  def next_question
+    if current_question.nil?
+      test.questions.first
+    else
+      test.questions.order(:id).where('id > ?', current_question.id).first
+    end
+  end
+
+  def total_questions_count
+    test.questions.count
   end
 end
