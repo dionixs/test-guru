@@ -1,0 +1,15 @@
+<h1>
+  Test: <%= @test_passage.test.title %> was Completed!
+</h1>
+
+<h2>Test Result:</h2>
+
+<p>
+  <% if @test_passage.success? %>
+    <p class="text-green-500"> <%= @test_passage.percentage %>% - Test Passed!</p>
+  <% else %>
+    <p class="text-red-500"><%= @test_passage.percentage %>%- Test Not Passed!</p>
+  <% end %>
+</p>
+
+<%= link_to 'All Tests', tests_path %>

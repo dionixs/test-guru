@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :tests do
-    resources :questions, shallow: true, except: [:index]
+    resources :questions, shallow: true, except: :index do
+      resources :answers, shallow: true, except: :index
+    end
+
+    post :start, on: :member
+  end
+
+  resources :test_passages, only: %i[show update] do
+    get :result, on: :member
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

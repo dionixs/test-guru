@@ -120,12 +120,3 @@ Answer.transaction do
     Answer.find_or_create_by!(answer)
   end
 end
-
-UserTest.transaction do
-  user = User.first
-  test_1 = Test.find_by(title: 'Ruby Beginner')
-  test_2 = Test.find_by(title: 'CSS')
-
-  UserTest.find_or_create_by!(user:, test: test_2)
-  UserTest.find_or_create_by!(user:, test: test_1)
-end
